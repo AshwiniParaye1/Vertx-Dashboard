@@ -3,7 +3,7 @@
 import * as d3 from "d3";
 import { geoEquirectangular, geoPath } from "d3-geo";
 import { useEffect, useRef } from "react";
-import worldData from "../data/world.json";
+import * as topojson from "topojson-client";
 
 const Demographics = () => {
   const mapRef = useRef(null);
@@ -25,87 +25,80 @@ const Demographics = () => {
       .attr("height", height)
       .style("background-color", "transparent");
 
-    // Define projection
-    const projection = geoEquirectangular()
-      .fitSize([width, height], worldData)
-      .center([0, 0])
-      .scale(width / 6)
-      .translate([width / 2, height / 2]);
+    // Load TopoJSON data
+    d3.json(
+      "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
+    ).then((data) => {
+      const worldData = topojson.feature(data, data.objects.countries);
 
-    // Create path generator
-    const path = geoPath().projection(projection);
+      // Define projection
+      const projection = geoEquirectangular()
+        .fitSize([width, height], worldData)
+        .center([0, 10]) // Center slightly north to match image
+        .scale(width / 6.5)
+        .translate([width / 2, height / 2]);
 
-    // Draw map with dot pattern
-    svg
-      .append("defs")
-      .append("pattern")
-      .attr("id", "dots")
-      .attr("width", 4)
-      .attr("height", 4)
-      .attr("patternUnits", "userSpaceOnUse")
-      .append("circle")
-      .attr("cx", 2)
-      .attr("cy", 2)
-      .attr("r", 0.5)
-      .attr("fill", "#333");
+      // Create path generator
+      const path = geoPath().projection(projection);
 
-    svg
-      .selectAll("path")
-      .data(worldData.features)
-      .enter()
-      .append("path")
-      .attr("d", path)
-      .attr("fill", "url(#dots)")
-      .attr("stroke", "none");
-
-    // Add markers for countries
-    const countries = [
-      { name: "India", coords: [78.9629, 20.5937], color: "#6366f1" },
-      { name: "USA", coords: [-95.7129, 37.0902], color: "#f97316" },
-      { name: "CANADA", coords: [-106.3468, 56.1304], color: "#eab308" },
-      { name: "UAE", coords: [53.8478, 23.4241], color: "#10b981" }
-    ];
-
-    // Add anonymous marker
-    svg
-      .append("g")
-      .attr(
-        "transform",
-        `translate(${projection([-95.7129, 37.0902])[0]}, ${
-          projection([-95.7129, 37.0902])[1]
-        })`
-      )
-      .append("g")
-      .attr("transform", "translate(-40, -30)")
-      .append("rect")
-      .attr("width", 80)
-      .attr("height", 24)
-      .attr("rx", 4)
-      .attr("fill", "#f97316")
-      .attr("opacity", 0.9);
-
-    svg
-      .append("text")
-      .attr("x", projection([-95.7129, 37.0902])[0])
-      .attr("y", projection([-95.7129, 37.0902])[1] - 20)
-      .attr("text-anchor", "middle")
-      .attr("fill", "white")
-      .text("Anonymous");
-
-    // Add country markers
-    countries.forEach((country) => {
+      // Draw map with dot pattern
       svg
+        .append("defs")
+        .append("pattern")
+        .attr("id", "dots")
+        .attr("width", 3)
+        .attr("height", 3)
+        .attr("patternUnits", "userSpaceOnUse")
         .append("circle")
-        .attr("cx", projection(country.coords)[0])
-        .attr("cy", projection(country.coords)[1])
-        .attr("r", 6)
-        .attr("fill", country.color);
+        .attr("cx", 1.5)
+        .attr("cy", 1.5)
+        .attr("r", 0.5)
+        .attr("fill", "#555");
+
+      svg
+        .selectAll("path")
+        .data(worldData.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("fill", "url(#dots)")
+        .attr("stroke", "none");
+
+      // Add markers for countries
+      const countries = [
+        { name: "India", coords: [78.9629, 20.5937], color: "#6366f1" },
+        { name: "USA", coords: [-95.7129, 37.0902], color: "#f97316" },
+        { name: "Canada", coords: [-106.3468, 56.1304], color: "#eab308" },
+        { name: "UAE", coords: [53.8478, 23.4241], color: "#10b981" }
+      ];
+
+      // Add country markers
+      countries.forEach((country) => {
+        svg
+          .append("circle")
+          .attr("cx", projection(country.coords)[0])
+          .attr("cy", projection(country.coords)[1])
+          .attr("r", 6)
+          .attr("fill", country.color)
+          .attr("stroke", "#000")
+          .attr("stroke-width", 0.5);
+
+        // Add glow effect
+        svg
+          .append("circle")
+          .attr("cx", projection(country.coords)[0])
+          .attr("cy", projection(country.coords)[1])
+          .attr("r", 10)
+          .attr("fill", country.color)
+          .attr("opacity", 0.2);
+      });
     });
   }, [mapRef]);
 
   return (
     <div className="grid grid-cols-1 gap-6">
       <div className="bg-black border border-gray-800 rounded-lg p-6">
+        {/* <h2 className="text-2xl font-bold mb-6">Demographics</h2> */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
             {/* World Map */}
@@ -123,7 +116,7 @@ const Demographics = () => {
               </div>
               <div className="flex items-center">
                 <div className="w-4 h-4 rounded-full bg-yellow-500 mr-2"></div>
-                <span>CANADA</span>
+                <span>Canada</span>
               </div>
               <div className="flex items-center">
                 <div className="w-4 h-4 rounded-full bg-emerald-500 mr-2"></div>
@@ -175,10 +168,10 @@ const Demographics = () => {
                 <div className="flex items-center mb-2">
                   <img
                     src="https://flagcdn.com/ca.svg"
-                    alt="CANADA"
+                    alt="Canada"
                     className="w-8 h-6 mr-2"
                   />
-                  <span className="text-xl">CANADA</span>
+                  <span className="text-xl">Canada</span>
                   <span className="ml-auto">10%</span>
                 </div>
                 <div className="w-full bg-gray-800 rounded-full h-2">
