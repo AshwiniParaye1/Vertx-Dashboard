@@ -20,7 +20,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
         {/* Middle column with company name */}
         <div className="flex-w p-4 text-center">
-          <h1 className="text-lg font-bold">Vertxlabs, Inc</h1>
+          <h1 className="text-lg font-bold pt-2">Vertxlabs, Inc</h1>
         </div>
 
         {/* Right column with empty space */}
@@ -49,8 +49,8 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                   key={item}
                   className={`px-4 py-4 cursor-pointer ${
                     activeSection === item.toLowerCase()
-                      ? "text-white font-medium"
-                      : "text-gray-500"
+                      ? "text-white font-bold"
+                      : "text-[#555555] font-bold text-base"
                   }`}
                   onClick={() => setActiveSection(item.toLowerCase())}
                 >
