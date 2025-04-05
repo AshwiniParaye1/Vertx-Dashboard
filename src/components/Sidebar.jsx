@@ -1,5 +1,3 @@
-import { FiFilter } from "react-icons/fi";
-
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const navItems = [
     "Dashboard",
@@ -12,33 +10,46 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
   return (
     <div className="w-64 bg-black border-r border-gray-800 flex flex-col">
-      {/* Logo and User */}
-      <div className="p-4 border-gray-800">
-        {/* Logo */}
-        <div className="flex items-center mb-6 border-gray-800">
-          <div className="bg-white p-2 rounded-full mr-3">
-            <FiFilter className="text-black" />
+      <div className="flex border-b border-gray-800">
+        {/* Left column with logo */}
+        <div className="p-4 flex items-center">
+          <div className="bg-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
+            <img
+              src={"/logo.png"}
+              alt="Vertx"
+              width={20}
+              height={20}
+              className="text-black w-5 h-5"
+            />
           </div>
-          <h1 className="text-xl font-bold">Vertxlabs, Inc</h1>
         </div>
 
-        {/* User and Navigation */}
-        <div className="flex items-start border-t border-gray-800">
-          {/* User */}
-          <div className="border-r border-b p-2 border-gray-800 mt-2">
-            <div className="w-10 h-10 rounded-full mr-3 overflow-hidden relative">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                alt="User avatar"
-                className="object-cover w-full h-full"
-              />
-              <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-black"></div>
-            </div>
-          </div>
+        {/* Middle column with company name */}
+        <div className="flex-w p-4 text-center">
+          <h1 className="text-lg font-bold">Vertxlabs, Inc</h1>
+        </div>
 
-          {/* Navigation */}
-          <nav className="flex-1">
-            <ul>
+        {/* Right column with empty space */}
+        <div className="flex-1"></div>
+      </div>
+
+      <div className="flex">
+        {/* Left column with user profile */}
+        <div className="p-4 flex">
+          <div className="w-10 h-10 rounded-full overflow-hidden relative">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              alt="User avatar"
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-black"></div>
+          </div>
+        </div>
+
+        {/* Right column with navigation */}
+        <div className="flex-1">
+          <nav className="h-full">
+            <ul className="h-full flex flex-col justify-between">
               {navItems.map((item) => (
                 <li
                   key={item}
