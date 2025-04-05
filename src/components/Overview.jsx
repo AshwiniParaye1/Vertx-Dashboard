@@ -185,6 +185,8 @@ const Overview = () => {
             <button
               className="px-4 py-1 bg-black border border-gray-700 rounded-full flex items-center"
               onClick={() => setVisitorsDropdownOpen(!visitorsDropdownOpen)}
+              aria-expanded={visitorsDropdownOpen}
+              aria-label="Toggle Visitors Dropdown"
             >
               <span className="text-xs font-semibold">{selectedVisitor}</span>
               <svg
@@ -206,11 +208,14 @@ const Overview = () => {
             </button>
 
             {visitorsDropdownOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg z-10">
+              <div
+                className="absolute left-0 mt-2 bg-black border border-gray-700 rounded-md shadow-lg z-10"
+                style={{ width: "100%" }}
+              >
                 {visitorOptions.map((option) => (
                   <button
                     key={option}
-                    className="block w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    className="block w-full text-left px-4 py-2 text-white text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none focus:bg-gray-700 focus:text-white"
                     onClick={() => {
                       setSelectedVisitor(option);
                       setVisitorsDropdownOpen(false);
@@ -226,8 +231,10 @@ const Overview = () => {
           {/* Date Range Dropdown */}
           <div className="relative ml-2">
             <button
-              className="px-4 py-1 bg-black border border-gray-700 rounded-full flex items-center"
+              className="px-4 py-1 bg-black border border-gray-700 rounded-full flex items-center "
               onClick={() => setDateRangeDropdownOpen(!dateRangeDropdownOpen)}
+              aria-expanded={dateRangeDropdownOpen}
+              aria-label="Toggle Date Range Dropdown"
             >
               <span className="text-xs font-semibold">{selectedDateRange}</span>
               <svg
@@ -249,11 +256,14 @@ const Overview = () => {
             </button>
 
             {dateRangeDropdownOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg z-10">
+              <div
+                className="absolute left-0 mt-2 bg-black border border-gray-700 rounded-md shadow-lg z-10"
+                style={{ width: "100%" }}
+              >
                 {dateRangeOptions.map((option) => (
                   <button
                     key={option}
-                    className="block w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    className="block w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none focus:bg-gray-700 focus:text-white"
                     onClick={() => {
                       setSelectedDateRange(option);
                       setDateRangeDropdownOpen(false);
@@ -271,6 +281,8 @@ const Overview = () => {
             <button
               className="px-4 py-1 bg-black border border-gray-700 rounded-full flex items-center"
               onClick={() => setAddDropdownOpen(!addDropdownOpen)}
+              aria-expanded={addDropdownOpen}
+              aria-label="Toggle Add Metric Dropdown"
             >
               <span className="text-xs font-semibold">
                 {addedMetric ? addedMetric : "+ Add"}
@@ -294,11 +306,14 @@ const Overview = () => {
             </button>
 
             {addDropdownOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg z-10">
+              <div
+                className="absolute left-0 mt-2 bg-black border border-gray-700 rounded-md shadow-lg z-10"
+                style={{ width: "100%" }}
+              >
                 {addOptions.map((option) => (
                   <button
                     key={option}
-                    className="block w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    className="block w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none focus:bg-gray-700 focus:text-white"
                     onClick={() => {
                       setAddDropdownOpen(false);
                       setAddedMetric(option);
