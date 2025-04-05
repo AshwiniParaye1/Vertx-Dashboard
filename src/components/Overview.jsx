@@ -183,10 +183,10 @@ const Overview = () => {
           {/* Visitors Dropdown */}
           <div className="relative">
             <button
-              className="px-4 py-2 bg-black border border-gray-700 rounded-full flex items-center"
+              className="px-4 py-1 bg-black border border-gray-700 rounded-full flex items-center"
               onClick={() => setVisitorsDropdownOpen(!visitorsDropdownOpen)}
             >
-              <span>{selectedVisitor}</span>
+              <span className="text-xs font-semibold">{selectedVisitor}</span>
               <svg
                 className={`w-4 h-4 ml-2 transition-transform ${
                   visitorsDropdownOpen ? "rotate-180" : ""
@@ -226,10 +226,10 @@ const Overview = () => {
           {/* Date Range Dropdown */}
           <div className="relative ml-2">
             <button
-              className="px-4 py-2 bg-black border border-gray-700 rounded-full flex items-center"
+              className="px-4 py-1 bg-black border border-gray-700 rounded-full flex items-center"
               onClick={() => setDateRangeDropdownOpen(!dateRangeDropdownOpen)}
             >
-              <span>{selectedDateRange}</span>
+              <span className="text-xs font-semibold">{selectedDateRange}</span>
               <svg
                 className={`w-4 h-4 ml-2 transition-transform ${
                   dateRangeDropdownOpen ? "rotate-180" : ""
@@ -269,10 +269,12 @@ const Overview = () => {
           {/* Add Dropdown */}
           <div className="relative ml-2">
             <button
-              className="px-4 py-2 bg-black border border-gray-700 rounded-full flex items-center"
+              className="px-4 py-1 bg-black border border-gray-700 rounded-full flex items-center"
               onClick={() => setAddDropdownOpen(!addDropdownOpen)}
             >
-              <span>{addedMetric ? addedMetric : "+ Add"}</span>
+              <span className="text-xs font-semibold">
+                {addedMetric ? addedMetric : "+ Add"}
+              </span>
               <svg
                 className={`w-4 h-4 ml-2 transition-transform ${
                   addDropdownOpen ? "rotate-180" : ""
