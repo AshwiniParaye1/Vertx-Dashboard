@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import Demographics from "./Demographics";
 import Overview from "./Overview";
@@ -9,23 +10,15 @@ const Analytics = () => {
     <div className="flex-1 flex flex-col overflow-auto">
       {/* Tab Navigation */}
       <div className="border-b border-gray-800">
-        <div className="flex">
+        <div className="flex ">
           <button
-            className={`px-6 py-4 ${
-              activeTab === "overview"
-                ? "border-b-2 border-white"
-                : "text-gray-500"
-            }`}
+            className={"px-6 py-4 text-gray-500 border-r border-gray-800 "}
             onClick={() => setActiveTab("overview")}
           >
             Overview
           </button>
           <button
-            className={`px-6 py-4 ${
-              activeTab === "demographics"
-                ? "border-b-2 border-white"
-                : "text-gray-500"
-            }`}
+            className={"px-6 py-4 text-gray-500 border-r border-gray-800"}
             onClick={() => setActiveTab("demographics")}
           >
             Demographics
@@ -36,7 +29,7 @@ const Analytics = () => {
       {/* Content Area */}
       <div className="flex-1 p-6 overflow-auto bg-black">
         {/* Always show both sections, regardless of tab */}
-        <div className="mb-8">
+        <div className="mb-8 ">
           <h1 className="text-4xl font-bold mb-6">Overview</h1>
           <Overview />
         </div>
