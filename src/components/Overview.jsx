@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use client";
 
 import {
@@ -9,7 +10,7 @@ import {
   PointElement,
   Tooltip
 } from "chart.js";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Line } from "react-chartjs-2";
 
 ChartJS.register(
@@ -23,6 +24,39 @@ ChartJS.register(
 
 const Overview = () => {
   const chartRef = useRef(null);
+  const [visitorsDropdownOpen, setVisitorsDropdownOpen] = useState(false);
+  const [dateRangeDropdownOpen, setDateRangeDropdownOpen] = useState(false);
+  const [addDropdownOpen, setAddDropdownOpen] = useState(false);
+  const [selectedVisitor, setSelectedVisitor] = useState("Visitors");
+  const [selectedDateRange, setSelectedDateRange] = useState("Last 30 days");
+  const [addedMetric, setAddedMetric] = useState(null);
+  const [visitorsData, setVisitorsData] = useState({
+    value: "13.49K",
+    percentageChange: "+469%",
+    changeValue: "(897)"
+  });
+  const [connectionsData, setConnectionsData] = useState({
+    value: "3.49K",
+    percentageChange: "+180%",
+    changeValue: "(497)"
+  });
+
+  // Dropdown options
+  const visitorOptions = [
+    "Visitors",
+    "Connections",
+    "Interactions",
+    "Impressions"
+  ];
+  const dateRangeOptions = [
+    "Today",
+    "Yesterday",
+    "This week",
+    "Last week",
+    "Last 7 days",
+    "Last 30 days"
+  ];
+  const addOptions = ["Connections", "Interactions", "Impressions"];
 
   // Generate dates for March 1-30
   const generateDates = () => {
@@ -34,25 +68,52 @@ const Overview = () => {
   };
 
   // Generate random data that resembles the chart in the image
-  const generateData = () => {
-    return [
-      400, 600, 900, 1200, 1000, 900, 1000, 1200, 1000, 800, 750, 700, 750, 700,
-      650, 700, 650, 700, 1200, 800, 600, 900, 700, 1000, 800, 1100, 900, 1000,
-      800, 1200
-    ];
+  const generateData = (type = "visitors") => {
+    // Different data based on the selected type
+    let data;
+    if (type === "visitors") {
+      data = [
+        400, 600, 900, 1200, 1000, 900, 1000, 1200, 1000, 800, 750, 700, 750,
+        700, 650, 700, 650, 700, 1200, 800, 600, 900, 700, 1000, 800, 1100, 900,
+        1000, 800, 1200
+      ];
+    } else if (type === "connections") {
+      data = [
+        200, 600, 1000, 800, 900, 1000, 900, 900, 700, 1000, 650, 900, 450, 400,
+        350, 400, 850, 400, 900, 1500, 300, 500, 1400, 700, 500, 800, 600, 900,
+        500, 900
+      ];
+    } else {
+      // Default data
+      data = [
+        100, 200, 300, 400, 300, 200, 300, 400, 300, 200, 150, 100, 150, 100,
+        50, 100, 50, 100, 400, 200, 100, 200, 100, 300, 200, 300, 200, 300, 200,
+        400
+      ];
+    }
+    return data;
   };
 
   const chartData = {
     labels: generateDates(),
     datasets: [
       {
-        data: generateData(),
+        data: generateData("visitors"),
         borderColor: "white",
         borderWidth: 2,
         pointRadius: 0,
-        tension: 0.1
+        tension: 0.1,
+        label: "Visitors"
+      },
+      addedMetric && {
+        data: generateData(addedMetric.toLowerCase()),
+        borderColor: "purple",
+        borderWidth: 2,
+        pointRadius: 0,
+        tension: 0.1,
+        label: addedMetric
       }
-    ]
+    ].filter(Boolean) // remove null dataset
   };
 
   const chartOptions = {
@@ -115,13 +176,19 @@ const Overview = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Visitors Chart */}
-      <div className="lg:col-span-2 bg-black border border-gray-800 rounded-lg p-6">
+      <div className="lg:col-span-2 bg-black border border-gray-800 rounded-lg p-6 relative">
         <div className="flex items-center mb-6">
+          {/* Visitors Dropdown */}
           <div className="relative">
-            <button className="px-4 py-2 bg-black border border-gray-700 rounded-full flex items-center">
-              <span>Visitors</span>
+            <button
+              className="px-4 py-2 bg-black border border-gray-700 rounded-full flex items-center"
+              onClick={() => setVisitorsDropdownOpen(!visitorsDropdownOpen)}
+            >
+              <span>{selectedVisitor}</span>
               <svg
-                className="w-4 h-4 ml-2"
+                className={`w-4 h-4 ml-2 transition-transform ${
+                  visitorsDropdownOpen ? "rotate-180" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -135,12 +202,36 @@ const Overview = () => {
                 />
               </svg>
             </button>
+
+            {visitorsDropdownOpen && (
+              <div className="absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg z-10">
+                {visitorOptions.map((option) => (
+                  <button
+                    key={option}
+                    className="block w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    onClick={() => {
+                      setSelectedVisitor(option);
+                      setVisitorsDropdownOpen(false);
+                    }}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
+
+          {/* Date Range Dropdown */}
           <div className="relative ml-2">
-            <button className="px-4 py-2 bg-black border border-gray-700 rounded-full flex items-center">
-              <span>Last 30 days</span>
+            <button
+              className="px-4 py-2 bg-black border border-gray-700 rounded-full flex items-center"
+              onClick={() => setDateRangeDropdownOpen(!dateRangeDropdownOpen)}
+            >
+              <span>{selectedDateRange}</span>
               <svg
-                className="w-4 h-4 ml-2"
+                className={`w-4 h-4 ml-2 transition-transform ${
+                  dateRangeDropdownOpen ? "rotate-180" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -154,20 +245,97 @@ const Overview = () => {
                 />
               </svg>
             </button>
+
+            {dateRangeDropdownOpen && (
+              <div className="absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg z-10">
+                {dateRangeOptions.map((option) => (
+                  <button
+                    key={option}
+                    className="block w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    onClick={() => {
+                      setSelectedDateRange(option);
+                      setDateRangeDropdownOpen(false);
+                    }}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
-          <button className="ml-2 px-4 py-2 bg-black border border-gray-700 rounded-full">
-            + Add
-          </button>
+
+          {/* Add Dropdown */}
+          <div className="relative ml-2">
+            <button
+              className="px-4 py-2 bg-black border border-gray-700 rounded-full flex items-center"
+              onClick={() => setAddDropdownOpen(!addDropdownOpen)}
+            >
+              <span>{addedMetric ? addedMetric : "+ Add"}</span>
+              <svg
+                className={`w-4 h-4 ml-2 transition-transform ${
+                  addDropdownOpen ? "rotate-180" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            {addDropdownOpen && (
+              <div className="absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg z-10">
+                {addOptions.map((option) => (
+                  <button
+                    key={option}
+                    className="block w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    onClick={() => {
+                      setAddDropdownOpen(false);
+                      setAddedMetric(option);
+                    }}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="mb-6">
-          <div className="flex items-baseline">
-            <h2 className="text-5xl font-bold">13.49K</h2>
-            <div className="ml-4">
-              <span className="text-green-500">+469%</span>
-              <div className="text-gray-500">(897)</div>
+        <div className="mb-6 flex items-start">
+          <div>
+            <div className="flex items-baseline">
+              <h2 className="text-5xl font-bold">{visitorsData.value}</h2>
+              <div className="ml-4">
+                <span className="text-green-500">
+                  {visitorsData.percentageChange}
+                </span>
+                <div className="text-gray-500">{visitorsData.changeValue}</div>
+              </div>
             </div>
           </div>
+
+          {addedMetric === "Connections" && (
+            <div className="ml-8">
+              <div className="flex items-baseline">
+                <h2 className="text-5xl font-bold">{connectionsData.value}</h2>
+                <div className="ml-4">
+                  <span className="text-green-500">
+                    {connectionsData.percentageChange}
+                  </span>
+                  <div className="text-gray-500">
+                    {connectionsData.changeValue}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="h-64">
