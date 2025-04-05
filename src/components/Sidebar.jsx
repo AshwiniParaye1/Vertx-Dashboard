@@ -1,3 +1,5 @@
+//src/components/Sidebar.jsx
+
 import { FiFilter } from "react-icons/fi";
 
 const Sidebar = () => {
