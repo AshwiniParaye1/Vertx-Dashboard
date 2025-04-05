@@ -29,14 +29,15 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
       <div className="flex">
         {/* Left column with user profile */}
-        <div className="p-4 flex ">
-          <div className="w-10 h-10 rounded-full overflow-hidden relative">
+        <div className="p-4 flex">
+          <div className="relative w-10 h-10">
             <img
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
               alt="User avatar"
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full rounded-full"
             />
-            <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-black"></div>
+
+            <div className="absolute bottom-0 -right-1 w-3.5 h-3.5 bg-green-800 rounded-full border-2 border-black"></div>
           </div>
         </div>
 
