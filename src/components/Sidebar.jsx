@@ -10,17 +10,11 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
   return (
     <div className="w-64 bg-black border-r border-gray-800 flex flex-col">
-      <div className="flex border-b border-gray-800">
+      <div className="flex border-b border-r border-gray-800">
         {/* Left column with logo */}
-        <div className="p-4 flex items-center">
+        <div className="p-4 flex items-center ">
           <div className="bg-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
-            <img
-              src={"/logo.png"}
-              alt="Vertx"
-              width={20}
-              height={20}
-              className="text-black w-5 h-5"
-            />
+            <img src={"/logo.png"} alt="Vertx" className="text-black w-5 h-5" />
           </div>
         </div>
 
@@ -35,7 +29,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
       <div className="flex">
         {/* Left column with user profile */}
-        <div className="p-4 flex">
+        <div className="p-4 flex ">
           <div className="w-10 h-10 rounded-full overflow-hidden relative">
             <img
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
