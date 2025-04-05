@@ -1,10 +1,10 @@
-//src/components/Header.jsx
-
-const Header = () => {
+const Header = ({ activeSection }) => {
   return (
     <div className="flex justify-between items-center border-b border-gray-800 px-6 py-4">
       <div>
-        <span className="text-xl">Analytics</span>
+        <span className="text-xl">
+          {activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}
+        </span>
       </div>
       <div className="flex items-center">
         <button className="px-4 py-2 mr-4">Activity</button>

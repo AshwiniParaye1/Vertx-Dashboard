@@ -1,72 +1,36 @@
-//src//App.jsx
-
 "use client";
 
 import { useState } from "react";
-import Demographics from "./components/Demographics";
+import Analytics from "./components/Analytics";
 import Header from "./components/Header";
-import Overview from "./components/Overview";
 import Sidebar from "./components/Sidebar";
 
 function App() {
-  const [activeTab, setActiveTab] = useState("overview");
+  const [activeSection, setActiveSection] = useState("analytics");
 
   return (
     <div className="flex h-screen bg-black text-white">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-auto">
-        <Header />
+        <Header activeSection={activeSection} />
 
-        {/* Tab Navigation */}
-        <div className="border-b border-gray-800">
-          <div className="flex">
-            <button
-              className={`px-6 py-4 ${
-                activeTab === "overview"
-                  ? "border-b-2 border-white"
-                  : "text-gray-500"
-              }`}
-              onClick={() => setActiveTab("overview")}
-            >
-              Overview
-            </button>
-            <button
-              className={`px-6 py-4 ${
-                activeTab === "demographics"
-                  ? "border-b-2 border-white"
-                  : "text-gray-500"
-              }`}
-              onClick={() => setActiveTab("demographics")}
-            >
-              Demographics
-            </button>
+        {/* Render appropriate section based on activeSection */}
+        {activeSection === "analytics" && <Analytics />}
+
+        {activeSection !== "analytics" && (
+          <div className="flex-1 p-6 overflow-auto bg-black">
+            <h1 className="text-4xl font-bold mb-6">
+              {activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}
+            </h1>
+            <p>This section is under construction.</p>
           </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="flex-1 p-6 overflow-auto bg-black">
-          {activeTab === "overview" && (
-            <>
-              <h1 className="text-4xl font-bold mb-6">Overview</h1>
-              <Overview />
-
-              <div className="mt-8">
-                <h1 className="text-4xl font-bold mb-6">Demographics</h1>
-                <Demographics />
-              </div>
-            </>
-          )}
-
-          {activeTab === "demographics" && (
-            <>
-              <h1 className="text-4xl font-bold mb-6">Demographics</h1>
-              <Demographics />
-            </>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

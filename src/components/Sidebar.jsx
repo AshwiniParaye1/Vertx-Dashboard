@@ -1,14 +1,21 @@
-//src/components/Sidebar.jsx
-
 import { FiFilter } from "react-icons/fi";
 
-const Sidebar = () => {
+const Sidebar = ({ activeSection, setActiveSection }) => {
+  const navItems = [
+    "Dashboard",
+    "Analytics",
+    "Connect",
+    "Dealroom",
+    "Profile",
+    "Settings"
+  ];
+
   return (
     <div className="w-64 bg-black border-r border-gray-800 flex flex-col">
       {/* Logo and User */}
       <div className="p-4 border-gray-800">
         {/* Logo */}
-        <div className="flex items-center mb-6  border-gray-800">
+        <div className="flex items-center mb-6 border-gray-800">
           <div className="bg-white p-2 rounded-full mr-3">
             <FiFilter className="text-black" />
           </div>
@@ -32,12 +39,19 @@ const Sidebar = () => {
           {/* Navigation */}
           <nav className="flex-1">
             <ul>
-              <li className="px-4 py-4 text-white font-medium">Dashboard</li>
-              <li className="px-4 py-4 text-white font-medium">Analytics</li>
-              <li className="px-4 py-4 text-gray-500">Connect</li>
-              <li className="px-4 py-4 text-gray-500">Dealroom</li>
-              <li className="px-4 py-4 text-gray-500">Profile</li>
-              <li className="px-4 py-4 text-gray-500">Settings</li>
+              {navItems.map((item) => (
+                <li
+                  key={item}
+                  className={`px-4 py-4 cursor-pointer ${
+                    activeSection === item.toLowerCase()
+                      ? "text-white font-medium"
+                      : "text-gray-500"
+                  }`}
+                  onClick={() => setActiveSection(item.toLowerCase())}
+                >
+                  {item}
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
