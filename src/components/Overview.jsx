@@ -217,7 +217,7 @@ const Overview = () => {
                 {visitorOptions.map((option) => (
                   <button
                     key={option}
-                    className={`block w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none ${
+                    className={`block w-full text-left px-2 py-2 text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none ${
                       selectedVisitor === option
                         ? "bg-[#1D1D1D] text-white"
                         : "text-[#555555]"
@@ -269,7 +269,7 @@ const Overview = () => {
                 {dateRangeOptions.map((option) => (
                   <button
                     key={option}
-                    className={`block w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none ${
+                    className={`block w-full text-left px-2 py-2 text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none ${
                       selectedDateRange === option
                         ? "bg-[#1D1D1D] text-white"
                         : "text-[#555555]"
@@ -323,7 +323,7 @@ const Overview = () => {
                 {addOptions.map((option) => (
                   <button
                     key={option}
-                    className={`block w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none ${
+                    className={`block w-full text-left px-2 py-2 text-xs font-semibold hover:bg-[#1D1D1D] hover:text-white focus:outline-none ${
                       addedMetric === option
                         ? "bg-[#1D1D1D] text-white"
                         : "text-[#555555]"
