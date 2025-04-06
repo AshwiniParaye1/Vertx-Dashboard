@@ -23,7 +23,15 @@ const Header = ({ activeSection }) => {
             alt="Profile"
             className="w-10 h-10 rounded-full mr-2"
           />
-          <img src="/logo.png" alt="Logo" className="w-6 h-6" />
+        </div>
+      )}
+
+      {/* Mobile Only Content */}
+      {isMobile && (
+        <div className="p-4 flex items-center ">
+          {/* <div className="bg-white p-2 rounded-full w-10 h-10 flex items-center justify-center"> */}
+          <img src={"/logo2.png"} alt="Vertx" className="text-white w-8 h-8" />
+          {/* </div> */}
         </div>
       )}
 
