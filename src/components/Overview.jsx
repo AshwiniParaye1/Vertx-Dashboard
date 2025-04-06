@@ -1,5 +1,3 @@
-//src/components/Overview.jsx
-
 /* eslint-disable no-unused-vars */
 "use client";
 
@@ -14,6 +12,7 @@ import {
 } from "chart.js";
 import { useRef, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 ChartJS.register(
   CategoryScale,
@@ -42,6 +41,8 @@ const Overview = () => {
     percentageChange: "+180%",
     changeValue: "(497)"
   });
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   // Dropdown options
   const visitorOptions = [
@@ -146,7 +147,8 @@ const Overview = () => {
           font: {
             size: 10
           },
-          maxRotation: 0
+          maxRotation: 0,
+          maxTicksLimit: isMobile ? 5 : 10
         }
       },
       y: {

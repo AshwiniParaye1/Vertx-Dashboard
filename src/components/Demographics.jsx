@@ -1,14 +1,14 @@
-//src/componnets/Demographics.jsx
-
 "use client";
 
 import * as d3 from "d3";
 import { geoEquirectangular, geoPath } from "d3-geo";
 import { useEffect, useRef } from "react";
 import * as topojson from "topojson-client";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const Demographics = () => {
   const mapRef = useRef(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -168,24 +168,26 @@ const Demographics = () => {
             <div ref={mapRef} className="w-full h-64 overflow-hidden"></div>
 
             {/* Legend */}
-            <div className="flex items-center justify-start mt-4 space-x-4 bg-black bg-opacity-80 p-2 rounded-full w-fit border-[#1D1D1D] border">
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-[#4834D4] mr-2"></div>
-                <span className="text-xs font-semibold">India</span>
+            {!isMobile && (
+              <div className="flex items-center justify-start mt-4 space-x-4 bg-black bg-opacity-80 p-2 rounded-full w-fit border-[#1D1D1D] border">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-[#4834D4] mr-2"></div>
+                  <span className="text-xs font-semibold">India</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-[#BD5302] mr-2"></div>
+                  <span className="text-xs font-semibold">USA</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-[#E9C16B] mr-2"></div>
+                  <span className="text-xs font-semibold">Canada</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-[#01754F] mr-2"></div>
+                  <span className="text-xs font-semibold">UAE</span>
+                </div>
               </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-[#BD5302] mr-2"></div>
-                <span className="text-xs font-semibold">USA</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-[#E9C16B] mr-2"></div>
-                <span className="text-xs font-semibold">Canada</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-[#01754F] mr-2"></div>
-                <span className="text-xs font-semibold">UAE</span>
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Country Stats */}
