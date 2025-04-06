@@ -161,7 +161,7 @@ const Demographics = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-6 mb-20">
+    <div className="grid grid-cols-1 gap-6 sm:mb-0 mb-20">
       <div className="bg-black border border-gray-800 rounded-lg p-6">
         <h2 className="text-xl font-bold mb-4">Demographics</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
