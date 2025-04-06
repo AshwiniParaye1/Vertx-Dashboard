@@ -104,23 +104,24 @@ const Demographics = () => {
           <div className="lg:col-span-2">
             {/* World Map */}
             <div ref={mapRef} className="w-full h-64 overflow-hidden"></div>
+
             {/* Legend */}
-            <div className="flex items-center justify-start mt-4 space-x-4 bg-black bg-opacity-80 p-2 rounded-full w-fit">
+            <div className="flex items-center justify-start mt-4 space-x-4 bg-black bg-opacity-80 p-2 rounded-full w-fit border-[#1D1D1D] border">
               <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-indigo-500 mr-2"></div>
-                <span className="text-xs">India</span>
+                <div className="w-3 h-3 rounded-full bg-[#4834D4] mr-2"></div>
+                <span className="text-xs font-semibold">India</span>
               </div>
               <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-orange-500 mr-2"></div>
-                <span className="text-xs">USA</span>
+                <div className="w-3 h-3 rounded-full bg-[#BD5302] mr-2"></div>
+                <span className="text-xs font-semibold">USA</span>
               </div>
               <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-                <span className="text-xs">Canada</span>
+                <div className="w-3 h-3 rounded-full bg-[#E9C16B] mr-2"></div>
+                <span className="text-xs font-semibold">Canada</span>
               </div>
               <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-emerald-500 mr-2"></div>
-                <span className="text-xs">UAE</span>
+                <div className="w-3 h-3 rounded-full bg-[#01754F] mr-2"></div>
+                <span className="text-xs font-semibold">UAE</span>
               </div>
             </div>
           </div>
