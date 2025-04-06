@@ -29,12 +29,12 @@ const Analytics = () => {
       {/* Content Area */}
       <div className="flex-1 p-6 overflow-auto bg-black ">
         {/* Always show both sections, regardless of tab */}
-        <div className="mb-8 pl-8">
+        <div className="mb-8 pl-8 pr-8">
           <h1 className="text-3xl font-extrabold mb-6">Overview</h1>
           <Overview />
         </div>
 
-        <div className="mt-8 pl-8">
+        <div className="mt-8 pl-8 pr-8">
           <Demographics />
         </div>
       </div>
