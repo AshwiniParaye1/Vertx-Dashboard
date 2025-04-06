@@ -1,3 +1,5 @@
+//src/components/Analytics.jsx
+
 "use client";
 
 import { useState } from "react";
@@ -8,90 +10,6 @@ import Overview from "./Overview";
 const Analytics = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const isMobile = useMediaQuery("(max-width: 768px)");
-  // const reportRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (isMobile && activeTab === "reports") {
-  //     // Mobile specific logic for Reports
-  //     const width = reportRef.current.clientWidth;
-  //     const height = 200; // Adjusted height for mobile
-
-  //     const data = [
-  //       { name: "India", value: 40, color: "#4834D4", flagCode: "in" },
-  //       { name: "USA", value: 25, color: "#BD5302", flagCode: "us" },
-  //       { name: "Canada", value: 10, color: "#E9C16B", flagCode: "ca" },
-  //       { name: "UAE", value: 7, color: "#579560", flagCode: "ae" }
-  //     ];
-
-  //     // Clear previous content
-  //     d3.select(reportRef.current).selectAll("*").remove();
-
-  //     // Create SVG
-  //     const svg = d3
-  //       .select(reportRef.current)
-  //       .append("svg")
-  //       .attr("width", "100%")
-  //       .attr("height", height);
-
-  //     // Create groups for each bar
-  //     const bars = svg
-  //       .selectAll(".bar")
-  //       .data(data)
-  //       .enter()
-  //       .append("g")
-  //       .attr("class", "bar")
-  //       .attr(
-  //         "transform",
-  //         (d, i) => `translate(0, ${i * (height / data.length)})`
-  //       );
-
-  //     // Background rectangles
-  //     bars
-  //       .append("rect")
-  //       .attr("x", 0)
-  //       .attr("y", 5)
-  //       .attr("width", "100%")
-  //       .attr("height", height / data.length - 10)
-  //       .attr("fill", "#27272A");
-
-  //     // Value rectangles
-  //     bars
-  //       .append("rect")
-  //       .attr("x", 0)
-  //       .attr("y", 5)
-  //       .attr("width", (d) => `${d.value}%`)
-  //       .attr("height", height / data.length - 10)
-  //       .attr("fill", (d) => d.color);
-
-  //     // Flag images
-  //     bars
-  //       .append("image")
-  //       .attr("xlink:href", (d) => `https://flagcdn.com/${d.flagCode}.svg`)
-  //       .attr("x", 5)
-  //       .attr("y", 5)
-  //       .attr("width", 30)
-  //       .attr("height", height / data.length - 10);
-
-  //     // Country names
-  //     bars
-  //       .append("text")
-  //       .attr("x", 40)
-  //       .attr("y", height / data.length / 2 + 4)
-  //       .style("font-size", "0.8em")
-  //       .attr("fill", "white")
-  //       .text((d) => d.name);
-
-  //     // Percentages
-  //     bars
-  //       .append("text")
-  //       .attr("x", width - 40)
-  //       .attr("y", height / data.length / 2 + 4)
-  //       .style("font-size", "0.8em")
-  //       .style("text-anchor", "end")
-  //       .attr("fill", "white")
-  //       .text((d) => `${d.value}%`);
-  //   }
-  // }, [isMobile, activeTab]);
 
   return (
     <div className="flex-1 flex flex-col overflow-auto">

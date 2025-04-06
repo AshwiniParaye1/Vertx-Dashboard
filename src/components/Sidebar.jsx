@@ -1,3 +1,5 @@
+//src/components/Sidebar.jsx
+
 "use client";
 
 import { useEffect, useState } from "react";

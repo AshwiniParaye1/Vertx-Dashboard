@@ -1,3 +1,5 @@
+//src/components/Header.jsx
+
 import { MoreVertical } from "lucide-react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
