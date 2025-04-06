@@ -65,12 +65,36 @@ const Demographics = () => {
         .attr("fill", "url(#dots)")
         .attr("stroke", "none");
 
-      // Add markers for countries
+      // Add country markers
       const countries = [
-        { name: "India", coords: [78.9629, 20.5937], color: "#6366f1" },
-        { name: "USA", coords: [-95.7129, 37.0902], color: "#f97316" },
-        { name: "Canada", coords: [-106.3468, 56.1304], color: "#eab308" },
-        { name: "UAE", coords: [53.8478, 23.4241], color: "#10b981" }
+        {
+          name: "India",
+          flagCode: "in",
+          coords: [78.9629, 20.5937],
+          color: "#4834D4",
+          percentage: "40%"
+        },
+        {
+          name: "USA",
+          flagCode: "us",
+          coords: [-95.7129, 37.0902],
+          color: "#BD5302",
+          percentage: "25%"
+        },
+        {
+          name: "Canada",
+          flagCode: "ca",
+          coords: [-106.3468, 56.1304],
+          color: "#E9C16B",
+          percentage: "10%"
+        },
+        {
+          name: "UAE",
+          flagCode: "ae",
+          coords: [53.8478, 23.4241],
+          color: "#01754F",
+          percentage: "7%"
+        }
       ];
 
       // Add country markers
@@ -93,8 +117,44 @@ const Demographics = () => {
           .attr("fill", country.color)
           .attr("opacity", 0.2);
       });
+
+      return () => {
+        // Cleanup function (optional)
+        d3.select(mapRef.current).selectAll("*").remove();
+      };
     });
   }, [mapRef]);
+
+  const countries = [
+    {
+      name: "India",
+      flagCode: "in",
+      coords: [78.9629, 20.5937],
+      color: "#4834D4",
+      percentage: "40%"
+    },
+    {
+      name: "USA",
+      flagCode: "us",
+      coords: [-95.7129, 37.0902],
+      color: "#BD5302",
+      percentage: "25%"
+    },
+    {
+      name: "Canada",
+      flagCode: "ca",
+      coords: [-106.3468, 56.1304],
+      color: "#E9C16B",
+      percentage: "10%"
+    },
+    {
+      name: "UAE",
+      flagCode: "ae",
+      coords: [53.8478, 23.4241],
+      color: "#01754F",
+      percentage: "7%"
+    }
+  ];
 
   return (
     <div className="grid grid-cols-1 gap-6">
@@ -129,93 +189,37 @@ const Demographics = () => {
           {/* Country Stats */}
           <div>
             <div className="space-y-4">
-              <div>
-                <div className="flex items-center mb-1">
-                  <img
-                    src="https://flagcdn.com/in.svg"
-                    alt="India"
-                    className="w-6 h-4 mr-2"
-                  />
-                  <span className="text-sm">India</span>
-                  <span className="ml-auto text-sm">40%</span>
-                </div>
-                <div className="w-full bg-gray-800 rounded-full h-1">
-                  <div
-                    className="bg-indigo-500 h-1 rounded-full"
-                    style={{ width: "40%" }}
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div className="flex items-center mb-1">
-                  <img
-                    src="https://flagcdn.com/us.svg"
-                    alt="USA"
-                    className="w-6 h-4 mr-2"
-                  />
-                  <span className="text-sm">USA</span>
-                  <span className="ml-auto text-sm">25%</span>
-                </div>
-                <div className="w-full bg-gray-800 rounded-full h-1">
-                  <div
-                    className="bg-orange-500 h-1 rounded-full"
-                    style={{ width: "25%" }}
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div className="flex items-center mb-1">
-                  <img
-                    src="https://flagcdn.com/ca.svg"
-                    alt="Canada"
-                    className="w-6 h-4 mr-2"
-                  />
-                  <span className="text-sm">Canada</span>
-                  <span className="ml-auto text-sm">10%</span>
-                </div>
-                <div className="w-full bg-gray-800 rounded-full h-1">
-                  <div
-                    className="bg-yellow-500 h-1 rounded-full"
-                    style={{ width: "10%" }}
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div className="flex items-center mb-1">
-                  <img
-                    src="https://flagcdn.com/ae.svg"
-                    alt="UAE"
-                    className="w-6 h-4 mr-2"
-                  />
-                  <span className="text-sm">UAE</span>
-                  <span className="ml-auto text-sm">7%</span>
-                </div>
-                <div className="w-full bg-gray-800 rounded-full h-1">
-                  <div
-                    className="bg-emerald-500 h-1 rounded-full"
-                    style={{ width: "7%" }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-6">
-              <button className="flex items-center text-gray-300 hover:text-white text-xs">
-                <span>View all countries</span>
-                <svg
-                  className="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+              {countries.map((country) => (
+                <div
+                  key={country.name}
+                  className="flex flex-row items-start gap-2"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  <img
+                    src={`https://flagcdn.com/${country.flagCode}.svg`}
+                    alt={country.name}
+                    className="w-8 h-8 mt-1 rounded"
                   />
-                </svg>
-              </button>
+                  <div className="flex-1 flex flex-col">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm font-medium">
+                        {country.name}
+                      </span>
+                      <span className="text-sm font-medium">
+                        {country.percentage}
+                      </span>
+                    </div>
+                    <div className="w-full bg-[#27272A] rounded-full h-2 relative overflow-hidden">
+                      <div
+                        className="h-2 rounded-full absolute left-0 top-0"
+                        style={{
+                          width: country.percentage,
+                          backgroundColor: country.color
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
