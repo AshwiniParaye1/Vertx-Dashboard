@@ -64,7 +64,10 @@ const Analytics = () => {
       <div className="flex-1 p-6 overflow-auto bg-black">
         {/* Always show both sections  */}
         <div className="mb-8">
-          <h1 className="text-3xl font-extrabold mb-6">Overview</h1>
+          {!isMobile && (
+            <h1 className="text-3xl font-extrabold mb-6">Overview</h1>
+          )}
+
           <Overview />
         </div>
 
