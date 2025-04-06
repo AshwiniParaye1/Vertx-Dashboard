@@ -1,7 +1,9 @@
 "use client";
 
-import { Activity, BarChart3, Globe, Grid, Network } from "lucide-react";
+import { Globe, LayoutDashboard, Network } from "lucide-react";
 import { useState } from "react";
+import { BiWorld } from "react-icons/bi";
+import { FaRegBell } from "react-icons/fa6";
 import Analytics from "./components/Analytics";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
@@ -13,10 +15,10 @@ function App() {
 
   // Mobile navigation items
   const mobileNavItems = [
-    { name: "Dashboard", icon: Grid },
-    { name: "Analytics", icon: BarChart3 },
+    { name: "Dashboard", icon: LayoutDashboard },
+    { name: "Analytics", icon: BiWorld },
     { name: "Connect", icon: Globe },
-    { name: "Activity", icon: Activity },
+    { name: "Activity", icon: FaRegBell },
     { name: "Dealroom", icon: Network }
   ];
 
