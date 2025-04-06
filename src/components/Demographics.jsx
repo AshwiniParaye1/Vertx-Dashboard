@@ -92,7 +92,7 @@ const Demographics = () => {
           name: "UAE",
           flagCode: "ae",
           coords: [53.8478, 23.4241],
-          color: "#01754F",
+          color: "#579560",
           percentage: "7%"
         }
       ];
@@ -151,7 +151,7 @@ const Demographics = () => {
       name: "UAE",
       flagCode: "ae",
       coords: [53.8478, 23.4241],
-      color: "#01754F",
+      color: "#579560",
       percentage: "7%"
     }
   ];
@@ -188,7 +188,7 @@ const Demographics = () => {
 
           {/* Country Stats */}
           <div>
-            <div className="space-y-4">
+            <div className="space-y-8">
               {countries.map((country) => (
                 <div
                   key={country.name}
@@ -201,10 +201,10 @@ const Demographics = () => {
                   />
                   <div className="flex-1 flex flex-col">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-medium">
+                      <span className="text-base font-semibold">
                         {country.name}
                       </span>
-                      <span className="text-sm font-medium">
+                      <span className="text-xs font-semibold">
                         {country.percentage}
                       </span>
                     </div>
@@ -220,6 +220,30 @@ const Demographics = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="border-b border-gray-800 pt-8"></div>
+
+            <div className="mt-auto pt-8 flex justify-end">
+              <button className="flex items-center text-gray-300 hover:text-white">
+                <span className="text-xs font-semibold">
+                  View all countries
+                </span>
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
