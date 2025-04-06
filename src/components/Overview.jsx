@@ -381,34 +381,41 @@ const Overview = () => {
       </div>
 
       {/* Insights */}
-      <div className="bg-black border border-gray-800 rounded-lg p-6">
+      <div className="bg-black border  border-gray-800 rounded-lg p-6">
         <h2 className="text-xl font-bold mb-6">Insights</h2>
 
-        <div className="mb-8">
-          <div className="text-base font-semibold mb-2">Founders</div>
-          <div className="flex items-start">
-            <h3 className="text-3xl font-extrabold">7.4K</h3>
-            <div className="ml-4">
-              <span className="text-[#01754F] text-xs font-semibold">
-                +000%
-              </span>
-              <div className="text-[#555555] text-xs font-semibold">(000)</div>
+        <div className="flex sm:flex-col flex-row justify-between">
+          <div className="mb-8 ">
+            <div className="text-base font-semibold mb-2">Founders</div>
+            <div className="flex items-start">
+              <h3 className="text-3xl font-extrabold">7.4K</h3>
+              <div className="ml-4">
+                <span className="text-[#01754F] text-xs font-semibold">
+                  +000%
+                </span>
+                <div className="text-[#555555] text-xs font-semibold">
+                  (000)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-8 ">
+            <div className="text-base font-semibold mb-2">Investors</div>
+            <div className="flex items-start">
+              <h3 className="text-3xl font-extrabold">6.09K</h3>
+              <div className="ml-4">
+                <span className="text-[#01754F] text-xs font-semibold">
+                  +000%
+                </span>
+                <div className="text-[#555555] text-xs font-semibold">
+                  (000)
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mb-8 ">
-          <div className="text-base font-semibold mb-2">Investors</div>
-          <div className="flex items-start">
-            <h3 className="text-3xl font-extrabold">6.09K</h3>
-            <div className="ml-4">
-              <span className="text-[#01754F] text-xs font-semibold">
-                +000%
-              </span>
-              <div className="text-[#555555] text-xs font-semibold">(000)</div>
-            </div>
-          </div>
-        </div>
         <div className="border-b border-gray-800"></div>
 
         <div className="mt-auto pt-8 flex justify-end">
