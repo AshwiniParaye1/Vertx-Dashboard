@@ -182,7 +182,7 @@ const Overview = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Visitors Chart */}
-      <div className="lg:col-span-2 bg-black border border-gray-800 rounded-lg p-6 relative">
+      <div className="lg:col-span-2 bg-black border border-gray-800 rounded-lg sm:p-6 pt-2 pl-0.5 relative">
         <div className="flex items-center mb-6">
           {/* Visitors Dropdown */}
           <div className="relative">
