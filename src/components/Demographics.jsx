@@ -1,3 +1,5 @@
+//src/componnets/Demographics.jsx
+
 "use client";
 
 import * as d3 from "d3";

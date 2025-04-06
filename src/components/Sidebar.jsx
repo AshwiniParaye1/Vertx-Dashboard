@@ -1,3 +1,5 @@
+//src/componnets/Sidebar.jsx
+
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const navItems = [
     "Dashboard",

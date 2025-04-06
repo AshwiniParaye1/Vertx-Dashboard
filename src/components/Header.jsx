@@ -1,3 +1,5 @@
+//src/componnets/Header.jsx
+
 const Header = ({ activeSection }) => {
   return (
     <div className="flex justify-between items-center border-b border-gray-800 px-6 py-4">
