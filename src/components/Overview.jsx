@@ -341,13 +341,15 @@ const Overview = () => {
 
         <div className="mb-6 flex items-start">
           <div>
-            <div className="flex items-baseline">
-              <h2 className="text-5xl font-bold">{visitorsData.value}</h2>
+            <div className="flex items-start">
+              <h2 className="text-3xl font-extrabold">{visitorsData.value}</h2>
               <div className="ml-4">
-                <span className="text-green-500">
+                <span className="text-green-500 text-xs font-semibold">
                   {visitorsData.percentageChange}
                 </span>
-                <div className="text-gray-500">{visitorsData.changeValue}</div>
+                <div className="text-[#555555] text-xs font-semibold">
+                  {visitorsData.changeValue}
+                </div>
               </div>
             </div>
           </div>
@@ -376,35 +378,42 @@ const Overview = () => {
 
       {/* Insights */}
       <div className="bg-black border border-gray-800 rounded-lg p-6">
-        <h2 className="text-3xl font-bold mb-6">Insights</h2>
+        <h2 className="text-xl font-bold mb-6">Insights</h2>
 
         <div className="mb-8">
-          <div className="text-xl mb-2">Founders</div>
-          <div className="flex items-baseline">
-            <h3 className="text-4xl font-bold">7.4K</h3>
+          <div className="text-base font-semibold mb-2">Founders</div>
+          <div className="flex items-start">
+            <h3 className="text-3xl font-extrabold">7.4K</h3>
             <div className="ml-4">
-              <span className="text-green-500">+000%</span>
-              <div className="text-gray-500">(000)</div>
+              <span className="text-[#01754F] text-xs font-semibold">
+                +000%
+              </span>
+              <div className="text-[#555555] text-xs font-semibold">(000)</div>
             </div>
           </div>
         </div>
 
-        <div className="mb-8">
-          <div className="text-xl mb-2">Investors</div>
-          <div className="flex items-baseline">
-            <h3 className="text-4xl font-bold">6.09K</h3>
+        <div className="mb-8 ">
+          <div className="text-base font-semibold mb-2">Investors</div>
+          <div className="flex items-start">
+            <h3 className="text-3xl font-extrabold">6.09K</h3>
             <div className="ml-4">
-              <span className="text-green-500">+000%</span>
-              <div className="text-gray-500">(000)</div>
+              <span className="text-[#01754F] text-xs font-semibold">
+                +000%
+              </span>
+              <div className="text-[#555555] text-xs font-semibold">(000)</div>
             </div>
           </div>
         </div>
+        <div className="border-b border-gray-800"></div>
 
-        <div className="mt-auto pt-8">
+        <div className="mt-auto pt-8 flex justify-end">
           <button className="flex items-center text-gray-300 hover:text-white">
-            <span>View detailed insights</span>
+            <span className="text-xs font-semibold">
+              View detailed insights
+            </span>
             <svg
-              className="w-5 h-5 ml-2"
+              className="w-4 h-4 ml-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
