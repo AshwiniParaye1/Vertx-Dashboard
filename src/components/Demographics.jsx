@@ -1,5 +1,3 @@
-//src/components/Demographics.jsx
-
 "use client";
 
 import * as d3 from "d3";
@@ -14,7 +12,7 @@ const Demographics = () => {
     if (!mapRef.current) return;
 
     const width = mapRef.current.clientWidth;
-    const height = 400;
+    const height = 300;
 
     // Clear previous SVG
     d3.select(mapRef.current).selectAll("*").remove();
@@ -23,8 +21,9 @@ const Demographics = () => {
     const svg = d3
       .select(mapRef.current)
       .append("svg")
-      .attr("width", width)
+      .attr("width", "100%") // Make SVG width responsive
       .attr("height", height)
+      .attr("viewBox", `0 0 ${width} ${height}`) // Set viewBox
       .style("background-color", "transparent");
 
     // Load TopoJSON data
@@ -100,114 +99,109 @@ const Demographics = () => {
   return (
     <div className="grid grid-cols-1 gap-6">
       <div className="bg-black border border-gray-800 rounded-lg p-6">
-        {/* <h2 className="text-2xl font-bold mb-6">Demographics</h2> */}
+        <h2 className="text-xl font-bold mb-4">Demographics</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
             {/* World Map */}
-            <div ref={mapRef} className="w-full h-[400px]"></div>
-
+            <div ref={mapRef} className="w-full h-64 overflow-hidden"></div>
             {/* Legend */}
-            <div className="flex items-center justify-start mt-4 space-x-6 bg-black bg-opacity-80 p-2 rounded-full w-fit">
+            <div className="flex items-center justify-start mt-4 space-x-4 bg-black bg-opacity-80 p-2 rounded-full w-fit">
               <div className="flex items-center">
-                <div className="w-4 h-4 rounded-full bg-indigo-500 mr-2"></div>
-                <span>India</span>
+                <div className="w-3 h-3 rounded-full bg-indigo-500 mr-2"></div>
+                <span className="text-xs">India</span>
               </div>
               <div className="flex items-center">
-                <div className="w-4 h-4 rounded-full bg-orange-500 mr-2"></div>
-                <span>USA</span>
+                <div className="w-3 h-3 rounded-full bg-orange-500 mr-2"></div>
+                <span className="text-xs">USA</span>
               </div>
               <div className="flex items-center">
-                <div className="w-4 h-4 rounded-full bg-yellow-500 mr-2"></div>
-                <span>Canada</span>
+                <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                <span className="text-xs">Canada</span>
               </div>
               <div className="flex items-center">
-                <div className="w-4 h-4 rounded-full bg-emerald-500 mr-2"></div>
-                <span>UAE</span>
+                <div className="w-3 h-3 rounded-full bg-emerald-500 mr-2"></div>
+                <span className="text-xs">UAE</span>
               </div>
             </div>
           </div>
 
+          {/* Country Stats */}
           <div>
-            {/* Country Stats */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div>
-                <div className="flex items-center mb-2">
+                <div className="flex items-center mb-1">
                   <img
                     src="https://flagcdn.com/in.svg"
                     alt="India"
-                    className="w-8 h-6 mr-2"
+                    className="w-6 h-4 mr-2"
                   />
-                  <span className="text-xl">India</span>
-                  <span className="ml-auto">40%</span>
+                  <span className="text-sm">India</span>
+                  <span className="ml-auto text-sm">40%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-2">
+                <div className="w-full bg-gray-800 rounded-full h-1">
                   <div
-                    className="bg-indigo-500 h-2 rounded-full"
+                    className="bg-indigo-500 h-1 rounded-full"
                     style={{ width: "40%" }}
                   ></div>
                 </div>
               </div>
-
               <div>
-                <div className="flex items-center mb-2">
+                <div className="flex items-center mb-1">
                   <img
                     src="https://flagcdn.com/us.svg"
                     alt="USA"
-                    className="w-8 h-6 mr-2"
+                    className="w-6 h-4 mr-2"
                   />
-                  <span className="text-xl">USA</span>
-                  <span className="ml-auto">25%</span>
+                  <span className="text-sm">USA</span>
+                  <span className="ml-auto text-sm">25%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-2">
+                <div className="w-full bg-gray-800 rounded-full h-1">
                   <div
-                    className="bg-orange-500 h-2 rounded-full"
+                    className="bg-orange-500 h-1 rounded-full"
                     style={{ width: "25%" }}
                   ></div>
                 </div>
               </div>
-
               <div>
-                <div className="flex items-center mb-2">
+                <div className="flex items-center mb-1">
                   <img
                     src="https://flagcdn.com/ca.svg"
                     alt="Canada"
-                    className="w-8 h-6 mr-2"
+                    className="w-6 h-4 mr-2"
                   />
-                  <span className="text-xl">Canada</span>
-                  <span className="ml-auto">10%</span>
+                  <span className="text-sm">Canada</span>
+                  <span className="ml-auto text-sm">10%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-2">
+                <div className="w-full bg-gray-800 rounded-full h-1">
                   <div
-                    className="bg-yellow-500 h-2 rounded-full"
+                    className="bg-yellow-500 h-1 rounded-full"
                     style={{ width: "10%" }}
                   ></div>
                 </div>
               </div>
-
               <div>
-                <div className="flex items-center mb-2">
+                <div className="flex items-center mb-1">
                   <img
                     src="https://flagcdn.com/ae.svg"
                     alt="UAE"
-                    className="w-8 h-6 mr-2"
+                    className="w-6 h-4 mr-2"
                   />
-                  <span className="text-xl">UAE</span>
-                  <span className="ml-auto">7%</span>
+                  <span className="text-sm">UAE</span>
+                  <span className="ml-auto text-sm">7%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-2">
+                <div className="w-full bg-gray-800 rounded-full h-1">
                   <div
-                    className="bg-emerald-500 h-2 rounded-full"
+                    className="bg-emerald-500 h-1 rounded-full"
                     style={{ width: "7%" }}
                   ></div>
                 </div>
               </div>
             </div>
-
-            <div className="mt-8">
-              <button className="flex items-center text-gray-300 hover:text-white">
+            <div className="mt-6">
+              <button className="flex items-center text-gray-300 hover:text-white text-xs">
                 <span>View all countries</span>
                 <svg
-                  className="w-5 h-5 ml-2"
+                  className="w-4 h-4 ml-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

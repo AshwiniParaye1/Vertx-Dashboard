@@ -371,7 +371,7 @@ const Overview = () => {
           )}
         </div>
 
-        <div className="h-64">
+        <div className="h-48">
           <Line ref={chartRef} data={chartData} options={chartOptions} />
         </div>
       </div>

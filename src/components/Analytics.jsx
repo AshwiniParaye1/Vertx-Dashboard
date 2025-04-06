@@ -35,7 +35,6 @@ const Analytics = () => {
         </div>
 
         <div className="mt-8 pl-8">
-          <h1 className="text-4xl font-bold mb-6">Demographics</h1>
           <Demographics />
         </div>
       </div>
